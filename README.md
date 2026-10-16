@@ -224,3 +224,4 @@ deben compararse como un año completo contra 1997.
 - [Diccionario de datos](docs/diccionario_datos.md)
 - [Reglas de calidad](docs/reglas_calidad.md)
 - [Acta de validación del pipeline](docs/acta_validacion_pipeline.md)
+
