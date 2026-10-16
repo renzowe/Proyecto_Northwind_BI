@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 1469.4572486692184
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 1816.3759571718761
+          },
+          "nodeIndex": "Dim_Calendario",
+          "nodeLineageTag": "fcdda1e4-59b8-43bd-b87f-8bb78f29ec5e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 1513.4390261718761
+          },
+          "nodeIndex": "Dim_Cliente",
+          "nodeLineageTag": "5fffebb8-d298-4f31-b307-38dc2105b852",
+          "size": {
+            "height": 211.42194999999998,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 577.02708543087454,
+            "y": 1618.8276242191159
+          },
+          "nodeIndex": "Dim_Empleado",
+          "nodeLineageTag": "21682bbb-ee4a-4c70-b884-378bcfe221bb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 828.969707,
+            "y": 1568.357417171876
+          },
+          "nodeIndex": "Dim_Producto",
+          "nodeLineageTag": "503b9b35-e209-46b1-8f72-1c916c29dc8e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1127.1421950000001,
+            "y": 1762.823565171876
+          },
+          "nodeIndex": "Dim_Transportista",
+          "nodeLineageTag": "57cb3c3e-1c26-44f8-bfc5-f858b9555f8c",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 504.1029629999997,
+            "y": 2039.5926431718763
+          },
+          "nodeIndex": "Fact_Ventas",
+          "nodeLineageTag": "3dfb3d54-ec35-49b5-8d3b-143722db14f4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1335.0382050490998,
+            "y": 1970.473671325919
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "c62740e1-d0af-4782-8c58-9b16c2cd7bb9",
+          "size": {
+            "height": 318.95054706795236,
+            "width": 234
+          },
+          "zIndex": 7
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 79.553182037699912,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

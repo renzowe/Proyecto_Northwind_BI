@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "cb1ee914ffc6f551835e",
+  "displayName": "01 - Visión Ejecutiva",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F5F7FA'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "d82826b3c2b28bbf06dc",
+      "target": "d544479c318af74cb0c2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d82826b3c2b28bbf06dc",
+      "target": "c7ded46bab3029f92d70",
+      "type": "DataFilter"
+    }
+  ]
+}

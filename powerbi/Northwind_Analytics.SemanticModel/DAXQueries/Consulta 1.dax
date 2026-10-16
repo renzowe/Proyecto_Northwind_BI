@@ -1,0 +1,82 @@
+// Validación anual de las medidas de inteligencia temporal.
+// Ejecutar en la Vista de consultas DAX de Power BI Desktop.
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    Dim_Calendario[year],
+    "Ventas Netas", [Ventas Netas],
+    "Ventas Netas PY", [Ventas Netas PY],
+    "Variación Ventas YoY", [Variación Ventas YoY],
+    "Crecimiento Ventas YoY %", [Crecimiento Ventas YoY %],
+    "Ventas Netas YTD", [Ventas Netas YTD]
+)
+ORDER BY Dim_Calendario[year]
+
+// Validación de medidas base contra la conciliación certificada de la Fase 7.
+// Ejecutar en la Vista de consultas DAX de Power BI Desktop.
+
+EVALUATE
+ROW(
+    "Ventas Brutas", [Ventas Brutas],
+    "Descuentos Otorgados", [Descuentos Otorgados],
+    "Ventas Netas", [Ventas Netas],
+    "Porcentaje Descuento", [Porcentaje Descuento],
+    "Unidades Vendidas", [Unidades Vendidas],
+    "Total Pedidos", [Total Pedidos],
+    "Clientes con Compras", [Clientes con Compras],
+    "Productos Vendidos", [Productos Vendidos],
+    "Ticket Promedio", [Ticket Promedio],
+    "Precio Promedio de Venta", [Precio Promedio de Venta],
+    "Pedidos a Tiempo", [Pedidos a Tiempo],
+    "Pedidos Demorados", [Pedidos Demorados],
+    "Pedidos Pendientes", [Pedidos Pendientes],
+    "Pedidos Enviados", [Pedidos Enviados],
+    "On-Time Delivery %", [On-Time Delivery %]
+)
+
+
+// Validación del ranking y acumulado de clientes.
+// El último cliente del conjunto completo debe alcanzar 100%.
+
+EVALUATE
+TOPN(
+    20,
+    SUMMARIZECOLUMNS(
+        Dim_Cliente[companyName],
+        "Ventas Netas", [Ventas Netas],
+        "Ranking", [Ranking Cliente],
+        "Ventas Acumuladas", [Ventas Acumuladas Clientes],
+        "% Acumulado", [Ventas Acumuladas Clientes %]
+    ),
+    [Ventas Netas], DESC,
+    Dim_Cliente[companyName], ASC
+)
+ORDER BY [Ranking]
+
+// Validación logística desglosada por transportista.
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    Dim_Transportista[companyName],
+    "Total Pedidos", [Total Pedidos],
+    "On-Time Delivery %", [On-Time Delivery %],
+    "Promedio Días Despacho", [Promedio Días Despacho],
+    "Flete Total", [Flete Total]
+)
+ORDER BY [Total Pedidos] DESC
+
+
+// Validación de medidas logísticas a granularidad de pedido.
+
+EVALUATE
+ROW(
+    "On-Time Delivery %", [On-Time Delivery %],
+    "Pedidos a Tiempo", [Pedidos a Tiempo],
+    "Pedidos Demorados", [Pedidos Demorados],
+    "Pedidos Pendientes", [Pedidos Pendientes],
+    "Promedio Días Despacho", [Promedio Días Despacho],
+    "Flete Total", [Flete Total],
+    "Flete Promedio por Pedido", [Flete Promedio por Pedido],
+    "Pedidos Demorados %", [Pedidos Demorados %],
+    "Pedidos Pendientes %", [Pedidos Pendientes %]
+)

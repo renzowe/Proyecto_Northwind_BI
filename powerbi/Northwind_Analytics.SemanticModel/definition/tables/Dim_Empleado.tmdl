@@ -1,0 +1,120 @@
+table Dim_Empleado
+	lineageTag: 21682bbb-ee4a-4c70-b884-378bcfe221bb
+
+	column employeeID
+		dataType: int64
+		formatString: 0
+		lineageTag: 86110b68-35b2-476e-94ab-afb5baaff20e
+		summarizeBy: none
+		sourceColumn: employeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column fullName
+		dataType: string
+		lineageTag: 2ad6b9b1-729d-4a0f-af01-d0d2689cebe7
+		summarizeBy: none
+		sourceColumn: fullName
+
+		annotation SummarizationSetBy = Automatic
+
+	column lastName
+		dataType: string
+		lineageTag: 63c8ca8b-b928-49fa-a391-ddaab5ca0341
+		summarizeBy: none
+		sourceColumn: lastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column firstName
+		dataType: string
+		lineageTag: 54777441-6c63-449b-9792-a2bb59fd91fa
+		summarizeBy: none
+		sourceColumn: firstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 3821a587-afde-42af-b3a1-fc1225bfdbcf
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column titleOfCourtesy
+		dataType: string
+		lineageTag: f05160fd-f30b-4cb8-b748-90f1740ba61c
+		summarizeBy: none
+		sourceColumn: titleOfCourtesy
+
+		annotation SummarizationSetBy = Automatic
+
+	column birthDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7b39047c-c729-4cf9-bed9-5bad2eb32485
+		summarizeBy: none
+		sourceColumn: birthDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hireDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 846c4851-f1f8-45b5-b56f-526a376069dd
+		summarizeBy: none
+		sourceColumn: hireDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column city
+		dataType: string
+		lineageTag: 5d6ee60e-4ebf-4062-9cce-ecffcd8cc03b
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 07f87852-32d8-4421-ba67-3a06439b5ccb
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 04d23fcc-ef50-434a-a691-17ec016fb506
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column reportsTo
+		dataType: int64
+		formatString: 0
+		lineageTag: f319274d-5824-47a4-85b7-d5e9b8b80947
+		summarizeBy: none
+		sourceColumn: reportsTo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Empleado = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaGold & "\Dim_Empleado.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"birthDate", type date}, {"hireDate", type date}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

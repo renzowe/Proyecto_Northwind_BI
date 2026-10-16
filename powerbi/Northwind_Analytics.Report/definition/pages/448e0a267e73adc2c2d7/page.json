@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "448e0a267e73adc2c2d7",
+  "displayName": "02 - Clientes y Productos",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F5F7FA'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "98057b12b18aa9ce792d",
+      "target": "4a9c7e493526ec704f42",
+      "type": "DataFilter"
+    },
+    {
+      "source": "73617e112c95d7d38e2b",
+      "target": "4a9c7e493526ec704f42",
+      "type": "DataFilter"
+    }
+  ]
+}

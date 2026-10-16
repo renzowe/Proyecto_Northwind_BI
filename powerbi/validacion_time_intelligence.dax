@@ -1,0 +1,13 @@
+// Validación anual de las medidas de inteligencia temporal.
+// Ejecutar en la Vista de consultas DAX de Power BI Desktop.
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    Dim_Calendario[year],
+    "Ventas Netas", [Ventas Netas],
+    "Ventas Netas PY", [Ventas Netas PY],
+    "Variación Ventas YoY", [Variación Ventas YoY],
+    "Crecimiento Ventas YoY %", [Crecimiento Ventas YoY %],
+    "Ventas Netas YTD", [Ventas Netas YTD]
+)
+ORDER BY Dim_Calendario[year]

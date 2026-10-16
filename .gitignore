@@ -1,0 +1,38 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Power BI: artefactos locales y caché (no forman parte del PBIP compartible)
+**/.pbi/
+*.pbix
+*.pbit
+
+# Editores y sistema operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporales y registros
+*.tmp
+*.temp
+*.bak
+*.log
+~$*
+
+# Documentación interna de seguimiento y cierre
+GUIA_PROYECTO_NORTHWIND_BI.md
+docs/auditoria_final.md

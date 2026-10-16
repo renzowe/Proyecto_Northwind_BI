@@ -1,0 +1,20 @@
+relationship AutoDetected_a924c187-49d5-47ac-9f34-6f47a81a424d
+	fromColumn: Fact_Ventas.customerID
+	toColumn: Dim_Cliente.customerID
+
+relationship AutoDetected_080ba717-1a2e-4a08-b54e-c8fa15d93519
+	fromColumn: Fact_Ventas.employeeID
+	toColumn: Dim_Empleado.employeeID
+
+relationship AutoDetected_949cabd6-6f75-4ef7-897c-149e4ad99bf9
+	fromColumn: Fact_Ventas.productID
+	toColumn: Dim_Producto.productID
+
+relationship AutoDetected_69fb0d82-0792-47d4-88e2-e323993e9573
+	fromColumn: Fact_Ventas.shipperID
+	toColumn: Dim_Transportista.shipperID
+
+relationship fe86807f-3a19-6a2f-0160-9d33aa01f0d2
+	fromColumn: Fact_Ventas.orderDate
+	toColumn: Dim_Calendario.date
+

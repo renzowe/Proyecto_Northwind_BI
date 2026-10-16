@@ -1,0 +1,109 @@
+table Dim_Producto
+	lineageTag: 503b9b35-e209-46b1-8f72-1c916c29dc8e
+
+	column productID
+		dataType: int64
+		formatString: 0
+		lineageTag: 91113207-66d8-485c-b812-6a7d9b895bba
+		summarizeBy: none
+		sourceColumn: productID
+
+		annotation SummarizationSetBy = Automatic
+
+	column productName
+		dataType: string
+		lineageTag: 9f0121e7-71b5-4c17-8d21-e854cf81a604
+		summarizeBy: none
+		sourceColumn: productName
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoryName
+		dataType: string
+		lineageTag: c1a320e8-26fd-432d-bdd3-073106a94e0d
+		summarizeBy: none
+		sourceColumn: categoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoryDescription
+		dataType: string
+		lineageTag: 51092958-0d6b-4a03-a141-ffec2a2a0dfa
+		summarizeBy: none
+		sourceColumn: categoryDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column supplierName
+		dataType: string
+		lineageTag: abd900d8-6861-49ca-8823-468106f0293c
+		summarizeBy: none
+		sourceColumn: supplierName
+
+		annotation SummarizationSetBy = Automatic
+
+	column supplierCountry
+		dataType: string
+		lineageTag: 4ae9614e-ebe9-4b65-9d69-de2247afcfab
+		summarizeBy: none
+		sourceColumn: supplierCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column unitPriceLista
+		dataType: double
+		lineageTag: f6ad810a-b402-450e-adcd-9932919e39d8
+		summarizeBy: none
+		sourceColumn: unitPriceLista
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column unitsInStock
+		dataType: int64
+		formatString: 0
+		lineageTag: 39ce7ffc-b6b9-4b72-9d9f-d32e037dc6fc
+		summarizeBy: none
+		sourceColumn: unitsInStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column unitsOnOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 1dcee965-5361-4864-95f6-2002cfea0a27
+		summarizeBy: none
+		sourceColumn: unitsOnOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column reorderLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e1b9924-187e-4404-9010-82bf52647e11
+		summarizeBy: none
+		sourceColumn: reorderLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column discontinuedStatus
+		dataType: string
+		lineageTag: 8c7d1be3-d5e5-4d30-91c5-c0ebeba0a3ea
+		summarizeBy: none
+		sourceColumn: discontinuedStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Producto = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaGold & "\Dim_Producto.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+				in
+				    Origen
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

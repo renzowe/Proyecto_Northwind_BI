@@ -1,0 +1,180 @@
+table _Medidas
+	lineageTag: c62740e1-d0af-4782-8c58-9b16c2cd7bb9
+
+	measure 'Total Pedidos' = DISTINCTCOUNT(Fact_Ventas[orderID])
+		formatString: 0
+		displayFolder: 02. Actividad Comercial
+		lineageTag: b6103900-47e4-45c0-a2aa-28a5b1ee5a9e
+
+	measure 'Ventas Brutas' = SUM(Fact_Ventas[importeBruto])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 01. Ventas
+		lineageTag: 57e98a55-d793-4e42-81a9-c673e5577295
+
+	measure 'Descuentos Otorgados' = SUM(Fact_Ventas[importeDescuento])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 01. Ventas
+		lineageTag: a9331b17-1b27-46c7-ac8a-df0f78f09d3d
+
+	measure 'Ventas Netas' = SUM(Fact_Ventas[importeNeto])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 01. Ventas
+		lineageTag: f48a33cc-1f0d-4c84-b02c-90164699bfd4
+
+	measure 'Porcentaje Descuento' = DIVIDE([Descuentos Otorgados], [Ventas Brutas])
+		formatString: 0.00%
+		displayFolder: 01. Ventas
+		lineageTag: 37f143fc-79b3-481d-ab9e-dce83046f150
+
+	measure 'Unidades Vendidas' = SUM(Fact_Ventas[quantity])
+		formatString: #,0
+		displayFolder: 02. Actividad Comercial
+		lineageTag: 02fb53d1-288e-4d34-bc62-a0b69bca79c0
+
+	measure 'Clientes con Compras' = DISTINCTCOUNT(Fact_Ventas[customerID])
+		formatString: #,0
+		displayFolder: 02. Actividad Comercial
+		lineageTag: 18d8cd5b-91b7-4263-8f4b-4c240cb64f26
+
+	measure 'Productos Vendidos' = DISTINCTCOUNT(Fact_Ventas[productID])
+		formatString: #,0
+		displayFolder: 02. Actividad Comercial
+		lineageTag: 6ca9890d-2834-431d-a062-93e4e56f2cee
+
+	measure 'Ticket Promedio' = DIVIDE([Ventas Netas], [Total Pedidos])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 02. Actividad Comercial
+		lineageTag: e3df0724-8888-4f7a-bf31-36c2118f5708
+
+	measure 'Precio Promedio de Venta' = DIVIDE([Ventas Netas], [Unidades Vendidas])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 02. Actividad Comercial
+		lineageTag: 687f88b9-e193-4181-9d43-eaf1c52d5fc6
+
+	measure 'Pedidos a Tiempo' = CALCULATE([Total Pedidos], Fact_Ventas[estadoEnvio] = "A Tiempo")
+		formatString: #,0
+		displayFolder: 03. Logística
+		lineageTag: 314f4ae9-bb91-4648-bb87-58a90c0f4f70
+
+	measure 'Pedidos Demorados' = CALCULATE([Total Pedidos], Fact_Ventas[estadoEnvio] = "Demorado")
+		formatString: #,0
+		displayFolder: 03. Logística
+		lineageTag: ca699053-4299-450c-8f79-ef8a89de754d
+
+	measure 'Pedidos Pendientes' = CALCULATE([Total Pedidos], Fact_Ventas[estadoEnvio] = "Pendiente")
+		formatString: #,0
+		displayFolder: 03. Logística
+		lineageTag: a412807f-fc22-4c4d-bbde-917dc0b9c445
+
+	measure 'Pedidos Enviados' = CALCULATE([Total Pedidos], Fact_Ventas[estadoEnvio] <> "Pendiente")
+		formatString: #,0
+		displayFolder: 03. Logística
+		lineageTag: f301fe92-03be-4d33-83e6-5d2bd674a20e
+
+	measure 'On-Time Delivery %' = DIVIDE([Pedidos a Tiempo], [Pedidos Enviados])
+		formatString: 0.00%
+		displayFolder: 03. Logística
+		lineageTag: 176034e0-5127-4107-a3af-e6b4d180783f
+
+	measure 'Ventas Netas PY' = CALCULATE([Ventas Netas], SAMEPERIODLASTYEAR(Dim_Calendario[date]))
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: 47ae0c73-afb7-40ea-b64c-d7afcf5e620a
+
+	measure 'Variación Ventas YoY' = IF(NOT ISBLANK([Ventas Netas PY]), [Ventas Netas] - [Ventas Netas PY])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: 3e4d73ca-2785-4d6b-833a-c3009901f95f
+
+	measure 'Crecimiento Ventas YoY %' = DIVIDE([Variación Ventas YoY], [Ventas Netas PY])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: 39dd67c6-baa7-44e5-961b-1b5ec447910f
+
+	measure 'Ventas Netas YTD' = TOTALYTD([Ventas Netas], Dim_Calendario[date])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: 7ce3b176-47ef-4885-a1a4-685a34860676
+
+	measure 'Ventas Netas QTD' = TOTALQTD([Ventas Netas], Dim_Calendario[date])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: 2034caba-2e6e-4f78-a230-4449592bcce6
+
+	measure 'Ventas Netas MTD' = TOTALMTD([Ventas Netas], Dim_Calendario[date])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: 5c37b72f-085a-40af-81cb-cc16435d2ae4
+
+	measure 'Ventas Mes Anterior' = CALCULATE([Ventas Netas], DATEADD(Dim_Calendario[date], -1, MONTH))
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: ec2f92cb-31b7-44fc-9dd4-77916e5a2c96
+
+	measure 'Variación Ventas MoM' = IF(NOT ISBLANK([Ventas Mes Anterior]), [Ventas Netas] - [Ventas Mes Anterior])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: 1f878a53-471e-4d98-81ed-5d35bb6c79f0
+
+	measure 'Crecimiento Ventas MoM %' = DIVIDE([Variación Ventas MoM], [Ventas Mes Anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 04. Inteligencia Temporal
+		lineageTag: 207d74f9-f00a-4625-922a-9aa8f4755a22
+
+	measure 'Ranking Cliente' = IF(ISINSCOPE(Dim_Cliente[companyName]), RANKX(ALLSELECTED(Dim_Cliente[companyName]), [Ventas Netas],, DESC, DENSE))
+		formatString: #,0
+		displayFolder: 05. Análisis de Clientes
+		lineageTag: 15396d20-bdfc-45d8-af80-fc8cd8d7b703
+
+	measure 'Ventas Acumuladas Clientes' = VAR RankingActual = [Ranking Cliente] RETURN IF(NOT ISBLANK(RankingActual), SUMX(TOPN(RankingActual, ALLSELECTED(Dim_Cliente[companyName]), [Ventas Netas], DESC, Dim_Cliente[companyName], ASC), CALCULATE([Ventas Netas])))
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 05. Análisis de Clientes
+		lineageTag: 2ba9d714-e938-41a7-b185-5675273a5085
+
+	measure 'Ventas Acumuladas Clientes %' = DIVIDE([Ventas Acumuladas Clientes], CALCULATE([Ventas Netas], ALLSELECTED(Dim_Cliente[companyName])))
+		formatString: 0.00%
+		displayFolder: 05. Análisis de Clientes
+		lineageTag: 57cfba54-8cd0-4bba-849f-afc4c8bc7dd3
+
+	measure 'Referencia 80 %' = 0.8
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: 05. Análisis de Clientes
+		lineageTag: 13c05931-53a8-4a8e-b331-efb29cc488bc
+
+	measure 'Promedio Días Despacho' = AVERAGEX(FILTER(VALUES(Fact_Ventas[orderID]), NOT ISBLANK(CALCULATE(MAX(Fact_Ventas[shippedDate])))), VAR FechaPedido = CALCULATE(MIN(Fact_Ventas[orderDate])) VAR FechaEnvio = CALCULATE(MAX(Fact_Ventas[shippedDate])) RETURN DATEDIFF(FechaPedido, FechaEnvio, DAY))
+		formatString: 0.00
+		displayFolder: 06. Logística Avanzada
+		lineageTag: c9fde101-3b4f-4b82-91f9-4b94024623a8
+
+	measure 'Flete Total' = SUMX(VALUES(Fact_Ventas[orderID]), CALCULATE(MAX(Fact_Ventas[freight])))
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 06. Logística Avanzada
+		lineageTag: eb811cc3-3e87-487f-81ab-aaf29fa8f14a
+
+	measure 'Flete Promedio por Pedido' = DIVIDE([Flete Total], [Total Pedidos])
+		formatString: $#,0.00;-$#,0.00;$#,0.00
+		displayFolder: 06. Logística Avanzada
+		lineageTag: 9915666d-90a2-43c5-b026-885a8e098d5e
+
+	measure 'Pedidos Demorados %' = DIVIDE([Pedidos Demorados], [Pedidos Enviados])
+		formatString: 0.00%
+		displayFolder: 06. Logística Avanzada
+		lineageTag: e0083f20-5785-4499-90be-3fd243c04436
+
+	measure 'Pedidos Pendientes %' = DIVIDE([Pedidos Pendientes], [Total Pedidos])
+		formatString: 0.00%
+		displayFolder: 06. Logística Avanzada
+		lineageTag: 2855865a-9fd2-47bf-9627-811e3aa10846
+
+	partition _Medidas = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+

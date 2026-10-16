@@ -1,0 +1,21 @@
+// Validación de medidas base contra la conciliación certificada de la Fase 7.
+// Ejecutar en la Vista de consultas DAX de Power BI Desktop.
+
+EVALUATE
+ROW(
+    "Ventas Brutas", [Ventas Brutas],
+    "Descuentos Otorgados", [Descuentos Otorgados],
+    "Ventas Netas", [Ventas Netas],
+    "Porcentaje Descuento", [Porcentaje Descuento],
+    "Unidades Vendidas", [Unidades Vendidas],
+    "Total Pedidos", [Total Pedidos],
+    "Clientes con Compras", [Clientes con Compras],
+    "Productos Vendidos", [Productos Vendidos],
+    "Ticket Promedio", [Ticket Promedio],
+    "Precio Promedio de Venta", [Precio Promedio de Venta],
+    "Pedidos a Tiempo", [Pedidos a Tiempo],
+    "Pedidos Demorados", [Pedidos Demorados],
+    "Pedidos Pendientes", [Pedidos Pendientes],
+    "Pedidos Enviados", [Pedidos Enviados],
+    "On-Time Delivery %", [On-Time Delivery %]
+)

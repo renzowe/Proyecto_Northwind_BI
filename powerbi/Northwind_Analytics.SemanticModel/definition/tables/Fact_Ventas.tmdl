@@ -1,0 +1,194 @@
+table Fact_Ventas
+	lineageTag: 3dfb3d54-ec35-49b5-8d3b-143722db14f4
+
+	column orderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d38ca32-42ef-4cbd-b959-eb7d1302155b
+		summarizeBy: count
+		sourceColumn: orderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column productID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c11c3cb-a303-4161-93b6-c1aef8ca7f36
+		summarizeBy: none
+		sourceColumn: productID
+
+		annotation SummarizationSetBy = Automatic
+
+	column unitPrice
+		dataType: double
+		lineageTag: ec20a050-b5e1-4bcb-9794-a458456a5450
+		summarizeBy: sum
+		sourceColumn: unitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: b7743e7c-ee90-44fa-a25d-a375b38c1f33
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount
+		dataType: double
+		lineageTag: 6f25eef7-102f-4958-a542-185a371e34a1
+		summarizeBy: sum
+		sourceColumn: discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importeBruto
+		dataType: double
+		lineageTag: 38387844-bb58-41f3-87f3-3e08d017c4c6
+		summarizeBy: sum
+		sourceColumn: importeBruto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importeDescuento
+		dataType: double
+		lineageTag: b6d26a0f-fe61-4a92-8bf7-aa1a85c424b2
+		summarizeBy: sum
+		sourceColumn: importeDescuento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importeNeto
+		dataType: double
+		lineageTag: dec7a8c0-f03c-461e-879c-891ffb028886
+		summarizeBy: sum
+		sourceColumn: importeNeto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column customerID
+		dataType: string
+		lineageTag: 3bd079df-b783-436e-b3fd-beaf80cb0d94
+		summarizeBy: none
+		sourceColumn: customerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column employeeID
+		dataType: int64
+		formatString: 0
+		lineageTag: 83cab071-89af-488f-adc2-e99a11348b33
+		summarizeBy: none
+		sourceColumn: employeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipperID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b400bf4-4d46-48e8-81fc-14adaa9d5594
+		summarizeBy: none
+		sourceColumn: shipperID
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7ba51dfc-362b-4aa3-96b5-3ff683c96530
+		summarizeBy: none
+		sourceColumn: orderDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column requiredDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c0eff558-72b4-4be8-a0a5-da188edff428
+		summarizeBy: none
+		sourceColumn: requiredDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column shippedDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4fec8280-2e3a-4c34-b357-2569b6bb4c94
+		summarizeBy: none
+		sourceColumn: shippedDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column estadoEnvio
+		dataType: string
+		lineageTag: d09dd791-5162-4f3d-aa04-5eae463c51da
+		summarizeBy: none
+		sourceColumn: estadoEnvio
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipCountry
+		dataType: string
+		lineageTag: 5ef720a0-2122-4516-b321-96febded759d
+		summarizeBy: none
+		sourceColumn: shipCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipCity
+		dataType: string
+		lineageTag: 18cc9066-f824-4942-8c6c-33f1b6a2889b
+		summarizeBy: none
+		sourceColumn: shipCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipRegion
+		dataType: string
+		lineageTag: 3faef1a6-dcb4-49a6-8d53-f3732222d832
+		summarizeBy: none
+		sourceColumn: shipRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column freight
+		dataType: double
+		lineageTag: e0a9b224-aae7-4142-9cfc-6cc688b306af
+		summarizeBy: sum
+		sourceColumn: freight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Fact_Ventas = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaGold & "\Fact_Ventas.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"orderDate", type date}, {"requiredDate", type date}, {"shippedDate", type date}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

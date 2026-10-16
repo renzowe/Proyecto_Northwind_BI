@@ -1,0 +1,14 @@
+// Validación de medidas logísticas a granularidad de pedido.
+
+EVALUATE
+ROW(
+    "On-Time Delivery %", [On-Time Delivery %],
+    "Pedidos a Tiempo", [Pedidos a Tiempo],
+    "Pedidos Demorados", [Pedidos Demorados],
+    "Pedidos Pendientes", [Pedidos Pendientes],
+    "Promedio Días Despacho", [Promedio Días Despacho],
+    "Flete Total", [Flete Total],
+    "Flete Promedio por Pedido", [Flete Promedio por Pedido],
+    "Pedidos Demorados %", [Pedidos Demorados %],
+    "Pedidos Pendientes %", [Pedidos Pendientes %]
+)

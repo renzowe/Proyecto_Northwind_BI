@@ -1,0 +1,95 @@
+table Dim_Cliente
+	lineageTag: 5fffebb8-d298-4f31-b307-38dc2105b852
+
+	column customerID
+		dataType: string
+		lineageTag: 2bb3295d-fb1a-4220-899c-9f8206f46353
+		summarizeBy: none
+		sourceColumn: customerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column companyName
+		dataType: string
+		lineageTag: 602bc0c3-c2cc-4255-b369-9669b7005b87
+		summarizeBy: none
+		sourceColumn: companyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column contactName
+		dataType: string
+		lineageTag: 6b7a06b1-ee98-47ee-976a-7606648503a8
+		summarizeBy: none
+		sourceColumn: contactName
+
+		annotation SummarizationSetBy = Automatic
+
+	column contactTitle
+		dataType: string
+		lineageTag: 01fffd6f-2680-4dcb-8bc6-14a3e93e8462
+		summarizeBy: none
+		sourceColumn: contactTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: 95c7c551-bc3e-45e3-95b8-c17533151949
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 80fc0fbf-c97e-4780-a9b4-2258e74f3153
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 313f23f3-532f-46c0-b160-2a38ee34010b
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column postalCode
+		dataType: string
+		lineageTag: b0761e97-74b0-43cc-a3f9-243144a51c96
+		summarizeBy: none
+		sourceColumn: postalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 0de697e5-0b24-4069-be22-8781b45deff1
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 761fc092-60eb-419d-94ad-d39b1bbd0685
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Cliente = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaGold & "\Dim_Cliente.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+				in
+				    Origen
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+// Validación logística desglosada por transportista.
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    Dim_Transportista[companyName],
+    "Total Pedidos", [Total Pedidos],
+    "On-Time Delivery %", [On-Time Delivery %],
+    "Promedio Días Despacho", [Promedio Días Despacho],
+    "Flete Total", [Flete Total]
+)
+ORDER BY [Total Pedidos] DESC

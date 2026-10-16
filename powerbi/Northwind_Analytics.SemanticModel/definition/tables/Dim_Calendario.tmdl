@@ -1,0 +1,120 @@
+table Dim_Calendario
+	lineageTag: fcdda1e4-59b8-43bd-b87f-8bb78f29ec5e
+	dataCategory: Time
+
+	column date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: e13eefff-c727-442c-ae54-8471e94cf986
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ee383e2-abed-4607-a336-e8a0ca1da5d1
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d387053-3acc-487f-9aa4-37b2f13a45e6
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarterName
+		dataType: string
+		lineageTag: 4abbe9d8-3720-4b44-8ef8-d66771fadd3c
+		summarizeBy: none
+		sourceColumn: quarterName
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 03e4d648-03d8-4f8c-99b1-443927d57a52
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthName
+		dataType: string
+		lineageTag: 924538dd-d014-454f-bb96-03af70db4d3d
+		summarizeBy: none
+		sourceColumn: monthName
+		sortByColumn: month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthYear
+		dataType: string
+		lineageTag: 08293cba-bc32-4747-be67-d9156c78ce72
+		summarizeBy: none
+		sourceColumn: monthYear
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f87a93e-39cc-4209-bce3-ac44976eccf2
+		summarizeBy: none
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column dayOfWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 31920a2c-feda-49bc-831c-efdf90cae41f
+		summarizeBy: none
+		sourceColumn: dayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column dayName
+		dataType: string
+		lineageTag: 3e0ee91d-ad51-403f-97a6-e0bece173453
+		summarizeBy: none
+		sourceColumn: dayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column isWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8f48124e-15b6-43e8-97b9-a76d1f31d95d
+		summarizeBy: none
+		sourceColumn: isWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Calendario = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaGold & "\Dim_Calendario.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"date", type date}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

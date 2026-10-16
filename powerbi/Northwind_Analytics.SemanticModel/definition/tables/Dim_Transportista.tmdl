@@ -1,0 +1,38 @@
+table Dim_Transportista
+	lineageTag: 57cb3c3e-1c26-44f8-bfc5-f858b9555f8c
+
+	column shipperID
+		dataType: int64
+		formatString: 0
+		lineageTag: 37ffa4fc-b3cf-41af-a35e-bb5c8c200a7f
+		summarizeBy: none
+		sourceColumn: shipperID
+
+		annotation SummarizationSetBy = Automatic
+
+	column companyName
+		dataType: string
+		lineageTag: 6db93441-6b0c-4159-8972-065143ab2cbb
+		summarizeBy: none
+		sourceColumn: companyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 16699a62-c844-4880-9305-c624f3cfabc6
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Transportista = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaGold & "\Dim_Transportista.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+				in
+				    Origen
+
+	annotation PBI_ResultType = Table
+

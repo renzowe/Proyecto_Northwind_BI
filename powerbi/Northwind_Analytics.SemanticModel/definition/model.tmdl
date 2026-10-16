@@ -1,0 +1,24 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-PE
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
+
+annotation PBI_QueryOrder = ["RutaGold","Dim_Calendario","Dim_Cliente","Dim_Empleado","Dim_Producto","Dim_Transportista","Fact_Ventas","_Medidas"]
+
+ref table Dim_Calendario
+ref table Dim_Cliente
+ref table Dim_Empleado
+ref table Dim_Producto
+ref table Dim_Transportista
+ref table Fact_Ventas
+ref table _Medidas
+
+ref cultureInfo es-ES
+

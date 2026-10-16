@@ -1,0 +1,17 @@
+// Validación del ranking y acumulado de clientes.
+// El último cliente del conjunto completo debe alcanzar 100%.
+
+EVALUATE
+TOPN(
+    20,
+    SUMMARIZECOLUMNS(
+        Dim_Cliente[companyName],
+        "Ventas Netas", [Ventas Netas],
+        "Ranking", [Ranking Cliente],
+        "Ventas Acumuladas", [Ventas Acumuladas Clientes],
+        "% Acumulado", [Ventas Acumuladas Clientes %]
+    ),
+    [Ventas Netas], DESC,
+    Dim_Cliente[companyName], ASC
+)
+ORDER BY [Ranking]
