@@ -51,13 +51,13 @@ Queda prohibida la carga a Silver o Gold de cualquier registro que vulnere las s
 
 | Relación | Origen (FK) | Destino (PK) | Huérfanos Permitidos | Estado Verificado |
 | :--- | :--- | :--- | :--- | :--- |
-| **Cliente en Orden** | `orders.customerID` | `customers.customerID` | 0 | ✅ Conforme |
-| **Vendedor en Orden** | `orders.employeeID` | `employees.employeeID` | 0 | ✅ Conforme |
-| **Transportista en Orden** | `orders.shipVia` | `shippers.shipperID` | 0 | ✅ Conforme |
-| **Cabecera en Detalle** | `order-details.orderID` | `orders.orderID` | 0 | ✅ Conforme |
-| **Producto en Detalle** | `order-details.productID` | `products.productID` | 0 | ✅ Conforme |
-| **Proveedor en Producto** | `products.supplierID` | `suppliers.supplierID` | 0 | ✅ Conforme |
-| **Categoría en Producto** | `products.categoryID` | `categories.categoryID` | 0 | ✅ Conforme |
+| **Cliente en Orden** | `orders.customerID` | `customers.customerID` | 0 |  Conforme |
+| **Vendedor en Orden** | `orders.employeeID` | `employees.employeeID` | 0 |  Conforme |
+| **Transportista en Orden** | `orders.shipVia` | `shippers.shipperID` | 0 |  Conforme |
+| **Cabecera en Detalle** | `order-details.orderID` | `orders.orderID` | 0 |  Conforme |
+| **Producto en Detalle** | `order-details.productID` | `products.productID` | 0 | Conforme |
+| **Proveedor en Producto** | `products.supplierID` | `suppliers.supplierID` | 0 |  Conforme |
+| **Categoría en Producto** | `products.categoryID` | `categories.categoryID` | 0 |  Conforme |
 
 ---
 
