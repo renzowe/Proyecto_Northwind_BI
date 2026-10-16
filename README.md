@@ -135,7 +135,6 @@ Proyecto_Northwind_BI/
 │   ├── bronze/ingesta_bronze.py
 │   ├── silver/transformacion_silver.py
 │   └── gold/modelado_gold.py
-├── GUIA_PROYECTO_NORTHWIND_BI.md
 ├── README.md
 └── requirements.txt
 ```
@@ -221,9 +220,7 @@ deben compararse como un año completo contra 1997.
 
 ## Documentación
 
-- [Guía de ejecución y fases](GUIA_PROYECTO_NORTHWIND_BI.md)
 - [Modelo dimensional](docs/modelo_datos.md)
 - [Diccionario de datos](docs/diccionario_datos.md)
 - [Reglas de calidad](docs/reglas_calidad.md)
 - [Acta de validación del pipeline](docs/acta_validacion_pipeline.md)
-- [Auditoría final](docs/auditoria_final.md)
